@@ -6,6 +6,7 @@ import { BiSearch } from "react-icons/bi";
 import { AiOutlineMenu } from "react-icons/ai";
 import Avatar from "./Avatar";
 import { useCallback, useState } from "react";
+import useRegisterModal from "@/hooks/useRegisterModal";
 
 const Navbar = () => {
     return ( 
@@ -26,7 +27,6 @@ const Navbar = () => {
 export default Navbar;
 
 const Logo = () => {
-    const router = useRouter();
     return (
         <Image
             alt="Airbnb Logo"
@@ -54,6 +54,7 @@ const Search = () => {
 }
 
 const UserMenu = () => {
+    const registerModal = useRegisterModal();
     const [isOpen, setIsOpen] = useState(false)
 
     const toggleOpen = useCallback(() => {
@@ -78,11 +79,11 @@ const UserMenu = () => {
                 <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
                     <div className="flex flex-col cursor-pointer">
                         <MenuItem 
-                            onClick={() => {}}
+                            onClick={registerModal.onOpen}
                             label="Login"
                          />
                         <MenuItem 
-                            onClick={() => {}}
+                            onClick={registerModal.onOpen}
                             label="Sign Up"
                          />
                     </div>
