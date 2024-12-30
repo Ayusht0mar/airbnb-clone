@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Nunito } from "next/font/google"
 import "./globals.css";
-import Navbar from "@/components/Navbar";
-import RegisterModal from "@/components/modals/RegisterModal";
-import ToasterProvider from "@/providers/ToasterProvider";
+import Navbar from "@/components/navigation/Navbar";
+import AuthModal from "@/components/modals/AuthModal";
+import { getCurrentUser } from "./actions/getCurrentUser";
 import RentModal from "@/components/modals/RentModal";
 
 const font = Nunito({
@@ -15,21 +15,25 @@ export const metadata: Metadata = {
   description: "Airbnb Clone created by Ayush Tomar",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
+  session
 }: Readonly<{
   children: React.ReactNode;
+  session: any
 }>) {
+
+  const currentUser = await getCurrentUser()
+
   return (
     <html lang="en">
       <body
         className={font.className}
       >
-        <RentModal/>
-        <RegisterModal/>
-        <ToasterProvider/>
-        <Navbar/>
-        {children}
+            <AuthModal/>
+            <RentModal/>
+            <Navbar currentUser={currentUser}/>
+            {children}
       </body>
     </html>
   );
