@@ -43,7 +43,7 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorites) => {
         router.refresh()
         toast.success("Success")
       } catch (error) {
-        toast.error((error as any).message)
+        toast.error((error as string))
       }
     },
     [currentUser, hasFavorited, listingId, loginModal, router]

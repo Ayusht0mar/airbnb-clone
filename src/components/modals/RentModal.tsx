@@ -65,10 +65,10 @@ const RentModal: FC = ({}) => {
       dynamic(() => import("../Map"), {
         ssr: false,
       }),
-    [location]
+    []
   )
 
-  const setCustomValue = (id: string, value: any) => {
+  const setCustomValue = (id: string, value: string | number | object | null) => {
     setValue(id, value, {
       shouldDirty: true,
       shouldTouch: true,

@@ -1,5 +1,5 @@
 "use client"
-import qs from "query-string"
+import qs, { StringifiableRecord } from "query-string"
 import { useCallback, useMemo, useState } from "react"
 import Modal from "./Modal"
 import useSearchModal from "@/app/hooks/useSearchModal"
@@ -41,7 +41,7 @@ const SearchModal = ({}) => {
       dynamic(() => import("../Map"), {
         ssr: false,
       }),
-    [location]
+    []
   )
 
   const onBack = useCallback(() => {
@@ -57,13 +57,13 @@ const SearchModal = ({}) => {
       return onNext()
     }
 
-    let currentQuery = {}
+    let currentQuery: StringifiableRecord = {}
 
     if (params) {
-      currentQuery = qs.parse(params.toString())
+      currentQuery = qs.parse(params.toString()) as StringifiableRecord;
     }
 
-    const updatedQuery: any = {
+    const updatedQuery: StringifiableRecord = {
       ...currentQuery,
       locationValue: location?.value,
       guestCount,

@@ -6,23 +6,38 @@ import { useCallback } from "react"
 import { TbPhotoPlus } from "react-icons/tb"
 
 declare global {
-  let cloudinary: any
+  interface Cloudinary {
+    open?: () => void;
+    [key: string]: unknown; // If more properties are needed, define them explicitly.
+  }
+  let cloudinary: Cloudinary;
 }
 
 interface ImageUploadProps {
-  onChange: (value: string) => void
-  value: string
+  onChange: (value: string) => void;
+  value: string;
+}
+
+interface CloudinaryUploadResult {
+  info?: {
+    secure_url?: string;
+  };
 }
 
 const ImageUpload: FC<ImageUploadProps> = ({ onChange, value }) => {
   const handleUpload = useCallback(
-    (result: any) => {
-      onChange(result.info.secure_url)
+    (result: CloudinaryUploadResult) => {
+      if (result.info?.secure_url) {
+        onChange(result.info.secure_url);
+      } else {
+        console.error("Upload failed or secure_url is missing", result);
+      }
     },
     [onChange]
   )
   return (
     <CldUploadWidget
+      //@ts-expect-error error expected
       onUpload={handleUpload}
       uploadPreset="airbnb"
       options={{
@@ -62,4 +77,4 @@ const ImageUpload: FC<ImageUploadProps> = ({ onChange, value }) => {
   )
 }
 
-export default ImageUpload
+export default ImageUpload;
