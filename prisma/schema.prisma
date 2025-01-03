@@ -13,12 +13,13 @@ model User {
   email         String?         @unique
   emailVerified DateTime?
   image         String?
-  favoriteIds    String[]      @db.ObjectId
+  favoriteIds    String[]     @db.ObjectId @default([])
 
   accounts      Account[]
   sessions      Session[]
   listings      Listing[]
   reservations  Reservation[]
+
  
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
