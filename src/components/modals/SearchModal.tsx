@@ -1,6 +1,6 @@
 "use client"
 import qs from "query-string"
-import { FC, useCallback, useMemo, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import Modal from "./Modal"
 import useSearchModal from "@/app/hooks/useSearchModal"
 import { useRouter, useSearchParams } from "next/navigation"
