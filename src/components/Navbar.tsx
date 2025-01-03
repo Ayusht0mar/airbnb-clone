@@ -8,7 +8,6 @@ import { useCallback, useState } from "react";
 import useRegisterModal from "@/hooks/useRegisterModal";
 import Categories from "./Categories";
 import { useRouter } from "next/navigation";
-import RentModal from "./modals/RentModal";
 import useRentModal from "@/hooks/useRentModal";
 
 const Navbar = () => {
