@@ -5,6 +5,7 @@ import Navbar from "@/components/navigation/Navbar";
 import AuthModal from "@/components/modals/AuthModal";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import RentModal from "@/components/modals/RentModal";
+import SearchModal from "@/components/modals/SearchModal";
 
 const font = Nunito({
   subsets: ["latin"]
@@ -32,6 +33,7 @@ export default async function RootLayout({
       >
             <AuthModal/>
             <RentModal/>
+            <SearchModal/>
             <Navbar currentUser={currentUser}/>
             {children}
       </body>
