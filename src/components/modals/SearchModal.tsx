@@ -18,9 +18,8 @@ enum STEPS {
   INFO = 2,
 }
 
-interface SearchModalProps {}
 
-const SearchModal: FC<SearchModalProps> = ({}) => {
+const SearchModal = ({}) => {
   const router = useRouter()
   //useSearchParams do navigation
   const params = useSearchParams()

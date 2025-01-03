@@ -1,10 +1,9 @@
 "use client"
 import { FC } from "react"
 import { signIn } from "next-auth/react"
-import axios from "axios"
 import { AiFillGithub } from "react-icons/ai"
 import { FcGoogle } from "react-icons/fc"
-import { useCallback, useState } from "react"
+import { useState } from "react"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 
 import Modal from "./Modal"
@@ -15,9 +14,8 @@ import Button from "@/components/ui/Button"
 import useAuthModal from "@/app/hooks/useAuthModal"
 import { useRouter } from "next/navigation"
 
-interface AuthModalProps {}
 
-const AuthModal: FC<AuthModalProps> = ({}) => {
+const AuthModal = ({}) => {
   const router = useRouter()
 
   const authModal = useAuthModal()

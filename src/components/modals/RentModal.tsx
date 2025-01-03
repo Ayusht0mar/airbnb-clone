@@ -24,9 +24,8 @@ enum STEPS {
   PRICE = 5,
 }
 
-interface RentModalProps {}
 
-const RentModal: FC<RentModalProps> = ({}) => {
+const RentModal: FC = ({}) => {
   const router = useRouter()
   const rentModal = useRentModal()
 
