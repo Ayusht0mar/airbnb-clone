@@ -6,7 +6,7 @@ import { useCallback } from "react"
 import { TbPhotoPlus } from "react-icons/tb"
 
 declare global {
-  let cloudinary: any
+  var cloudinary: any
 }
 
 interface ImageUploadProps {
@@ -24,7 +24,7 @@ const ImageUpload: FC<ImageUploadProps> = ({ onChange, value }) => {
   return (
     <CldUploadWidget
       onUpload={handleUpload}
-      uploadPreset="qumclhja"
+      uploadPreset="airbnb"
       options={{
         maxFiles: 1,
       }}
