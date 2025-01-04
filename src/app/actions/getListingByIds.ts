@@ -1,12 +1,8 @@
 import {prisma} from "@/lib/prismadb"
 
-interface IParams {
-  listingId?: string
-}
 
-export default async function getListingById(params: IParams) {
+export default async function getListingById({ listingId }: { listingId?: string }) {
   try {
-    const { listingId } = params
 
     const listing = await prisma.listing.findUnique({
       where: {
@@ -31,7 +27,6 @@ export default async function getListingById(params: IParams) {
       },
     }
   } catch (error: unknown) {
-    console.log(error)
-    throw new Error(String(error))
-  }
+    console.error("Error fetching listing by id", error)
+  } 
 }

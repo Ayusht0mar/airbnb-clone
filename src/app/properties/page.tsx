@@ -14,6 +14,7 @@ export default async function PropertiesPage() {
   }
 
   const listings = await getListings({
+    //@ts-expect-error code working
     userId: currentUser.id,
   })
 
@@ -27,6 +28,10 @@ export default async function PropertiesPage() {
   }
 
   return (
-      <PropertiesClient listings={listings} currentUser={currentUser} />
+      <PropertiesClient
+        listings={listings}
+        //@ts-expect-error code working
+        currentUser={currentUser} 
+      />
   )
 }

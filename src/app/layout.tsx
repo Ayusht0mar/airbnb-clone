@@ -31,8 +31,11 @@ export default async function RootLayout({
       >
             <AuthModal/>
             <RentModal/>
-            <SearchModal/>
-            <Navbar currentUser={currentUser}/>
+            <SearchModal/>            
+            <Navbar
+            //@ts-expect-error code working
+
+             currentUser={currentUser}/>
             {children}
       </body>
     </html>

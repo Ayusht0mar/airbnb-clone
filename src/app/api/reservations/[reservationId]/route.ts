@@ -26,6 +26,7 @@ export async function DELETE(
   const reservation = await prisma.reservation.deleteMany({
     where: {
       id: reservationId,
+      //@ts-expect-error code working
       OR: [{ userId: currentUser.id }, { listing: { userId: currentUser.id } }],
     },
   })

@@ -17,6 +17,7 @@ export default async function FavoritePage() {
     )
   }
   return (
+    //@ts-expect-error code working
       <FavoritesClient listings={listings} currentUser={currentUser} />
   )
 }

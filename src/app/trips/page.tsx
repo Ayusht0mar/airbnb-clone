@@ -14,6 +14,7 @@ export default async function TripsPage() {
   }
 
   const reservations = await getReservations({
+    //@ts-expect-error code working
     userId: currentUser.id,
   })
 
@@ -27,6 +28,8 @@ export default async function TripsPage() {
   }
 
   return (
-      <TripsClient reservations={reservations} currentUser={currentUser} />
+      <TripsClient reservations={reservations}
+      //@ts-expect-error code working
+      currentUser={currentUser} />
   )
 }

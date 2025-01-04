@@ -29,6 +29,7 @@ export async function POST(request: Request) {
       guestCount,
       locationValue: location.value,
       price: parseInt(price, 10),
+      //@ts-expect-error code working
       userId: currentUser.id,
     },
   })

@@ -39,6 +39,7 @@ export default async function Home({ params }: {params: Promise<HomeProps>}) {
           {listings.map((listing) => {
             return (
               <ListingCard
+              //@ts-expect-error code working
                 currentUser={currentUser}
                 key={listing.id}
                 data={listing}

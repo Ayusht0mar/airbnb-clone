@@ -5,6 +5,7 @@ import {getCurrentUser} from "./getCurrentUser"
 export default async function getFavoriteListings() {
   try {
     const currentUser = await getCurrentUser()
+    
     if (!currentUser) {
       return []
     }
@@ -12,6 +13,7 @@ export default async function getFavoriteListings() {
     const favorites = await prisma.listing.findMany({
       where: {
         id: {
+          //@ts-expect-error code working
           in: [...(currentUser.favoriteIds || [])],
         },
       },

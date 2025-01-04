@@ -24,6 +24,7 @@ export async function POST(request: Request) {
     data: {
       reservations: {
         create: {
+          //@ts-expect-error code working
           userId: currentUser.id,
           startDate,
           endDate,

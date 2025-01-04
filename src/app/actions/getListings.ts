@@ -1,17 +1,17 @@
-import { prisma } from "@/lib/prismadb"
+import { prisma } from "@/lib/prismadb";
 
 export interface IListingsParams {
-  userId?: string
-  guestCount?: number
-  roomCount?: number
-  bathroomCount?: number
-  startDate?: string
-  endDate?: string
-  locationValue?: string
-  category?: string
+  userId?: string;
+  guestCount?: number;
+  roomCount?: number;
+  bathroomCount?: number;
+  startDate?: string;
+  endDate?: string;
+  locationValue?: string;
+  category?: string;
 }
 
-export default async function getListings(params: IListingsParams) {
+export default async function getListings(params: IListingsParams = {}) {
   try {
     const {
       userId,
@@ -22,32 +22,33 @@ export default async function getListings(params: IListingsParams) {
       endDate,
       locationValue,
       category,
-    } = params
+    } = params;
 
-    const query: Record<string, unknown> = {}
+    const query: Record<string, unknown> = {};
+
     if (userId) {
-      query.userId = userId
+      query.userId = userId;
     }
     if (category) {
-      query.category = category
+      query.category = category;
     }
     if (roomCount) {
       query.roomCount = {
         gte: +roomCount,
-      }
+      };
     }
     if (guestCount) {
       query.guestCount = {
         gte: +guestCount,
-      }
+      };
     }
     if (bathroomCount) {
       query.bathroomCount = {
         gte: +bathroomCount,
-      }
+      };
     }
     if (locationValue) {
-      query.locationValue = locationValue
+      query.locationValue = locationValue;
     }
 
     if (startDate && endDate) {
@@ -66,7 +67,7 @@ export default async function getListings(params: IListingsParams) {
             ],
           },
         },
-      }
+      };
     }
 
     const listings = await prisma.listing.findMany({
@@ -74,14 +75,14 @@ export default async function getListings(params: IListingsParams) {
       orderBy: {
         createdAt: "desc",
       },
-    })
+    });
 
     const safeListings = listings.map((listing) => ({
       ...listing,
       createdAt: listing.createdAt.toISOString(),
-    }))
+    }));
 
-    return safeListings
+    return safeListings;
   } catch (error: unknown) {
     if (error instanceof Error) {
       throw new Error(error.message);

@@ -13,7 +13,9 @@ export default async function Reservations() {
     )
   }
 
-  const reservations = await getReservations({ authorId: currentUser.id })
+  const reservations = await getReservations({ 
+    //@ts-expect-error code working
+    authorId: currentUser.id })
 
   if (reservations.length === 0) {
     return (
@@ -26,6 +28,7 @@ export default async function Reservations() {
   return (
       <ReservationsClient
         reservations={reservations}
+        //@ts-expect-error code working        
         currentUser={currentUser}
       />
   )

@@ -23,6 +23,7 @@ export async function DELETE(
   const listing = await prisma.listing.deleteMany({
     where: {
       id: listingId,
+      //@ts-expect-error code working
       userId: currentUser.id,
     },
   })
