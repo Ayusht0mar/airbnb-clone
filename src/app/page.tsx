@@ -9,7 +9,10 @@ interface HomeProps {
   searchParams: IListingsParams
 }
 
-export default async function Home({ searchParams }: HomeProps) {
+export default async function Home({ params }: {params: Promise<HomeProps>}) {
+
+  const resolvedParams = await params;
+  const { searchParams } = resolvedParams;
   const listings = await getListings(searchParams)
   const currentUser = await getCurrentUser()
 
@@ -24,14 +27,12 @@ export default async function Home({ searchParams }: HomeProps) {
       <Container>
         <div
           className="
-          pt-24
+          pt-48
           grid
           grid-cols-1
           sm:grid-cols-2
           md:grid-cols-3
           lg:grid-cols-4
-          xl:grid-cols-5
-          2xl:grid-cols-6
           gap-8
         "
         >
