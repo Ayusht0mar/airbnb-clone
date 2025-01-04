@@ -4,7 +4,7 @@ import { FC } from "react"
 import { IconType } from "react-icons"
 import ListingCategory from "./ListingCategory"
 import dynamic from "next/dynamic"
-import UserAvatar from "../UserAvatar"
+import Image from "next/image"
 
 const Map = dynamic(() => import("../Map"), {
   ssr: false,
@@ -42,7 +42,9 @@ const ListingInfo: FC<ListingInfoProps> = ({
       <div className="flex flex-col gap-2">
         <div className="text-xl font-semibold flex flex-row items-center gap-2">
           <div>Hosted by {user?.name}</div>
-          <UserAvatar/>
+          <div>
+            <Image src={user?.image || "/images/placeholder.jpg"} alt="User avatar" width={30} height={30} />
+          </div>
         </div>
         <div className="flex flex-row items-center gap-4 font-light text-neutral-500">
           <div>{guestCount} guests</div>
