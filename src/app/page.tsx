@@ -6,14 +6,14 @@ import EmptyState from "@/components/EmptyState"
 import ListingCard from "@/components/listings/ListingCard"
 
 interface HomeProps {
-  searchParams: IListingsParams
+  searchParams: Promise<IListingsParams>
 }
 
-export default async function Home({ params }: {params: Promise<HomeProps>}) {
+export default async function Home({ searchParams }: HomeProps) {
 
-  const resolvedParams = await params;
-  const { searchParams } = resolvedParams;
-  const listings = await getListings(searchParams)
+  const resolvedParams = await searchParams;
+
+  const listings = await getListings(resolvedParams)
   const currentUser = await getCurrentUser()
 
   if (listings.length === 0) {
@@ -34,6 +34,7 @@ export default async function Home({ params }: {params: Promise<HomeProps>}) {
           md:grid-cols-3
           lg:grid-cols-4
           gap-8
+          pb-24
         "
         >
           {listings.map((listing) => {
