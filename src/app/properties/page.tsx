@@ -28,10 +28,10 @@ export default async function PropertiesPage() {
   }
 
   return (
-      <PropertiesClient
-        listings={listings}
-        //@ts-expect-error code working
-        currentUser={currentUser} 
-      />
+        <PropertiesClient
+          listings={listings}
+          //@ts-expect-error code working
+          currentUser={currentUser} 
+        />
   )
 }
