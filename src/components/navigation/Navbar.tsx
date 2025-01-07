@@ -16,7 +16,7 @@ import useCountries from "@/app/hooks/useCountries";
 import useSearchModal from "@/app/hooks/useSearchModal";
 
 //Common
-import {  FC, useMemo } from "react";
+import {  FC, Suspense, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 interface NavbarProps {
@@ -27,18 +27,20 @@ interface NavbarProps {
 
 const Navbar: FC<NavbarProps> = ({ currentUser }) => {
     return ( 
-        <div className="fixed w-full bg-white z-10 shadow-sm">
-            <div className=" py-4 border-b-[1px]">
-                <Container>
-                    <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
-                        <Logo/>
-                        <SearchBar/>
-                        <UserMenu currentUser={currentUser} />
-                    </div>
-                </Container>
-            </div>
-            <Categories/>
-        </div>
+          <div className="fixed w-full bg-white z-10 shadow-sm">
+              <div className=" py-4 border-b-[1px]">
+                  <Container>
+                      <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
+                          <Logo/>
+                            <SearchBar/>
+                          <UserMenu currentUser={currentUser} />
+                      </div>
+                  </Container>
+              </div>
+              <Suspense>
+                <Categories/>
+              </Suspense>
+          </div>
      );
 };
 
@@ -157,6 +159,7 @@ const SearchBar = () => {
                 text-white
               "
               >
+              
                 <Search size={18} />
               </div>
             </div>

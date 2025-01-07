@@ -6,6 +6,7 @@ import AuthModal from "@/components/modals/AuthModal";
 import { getCurrentUser } from "./actions/getCurrentUser";
 import RentModal from "@/components/modals/RentModal";
 import SearchModal from "@/components/modals/SearchModal";
+import { Suspense } from "react";
 
 const font = Nunito({
   subsets: ["latin"]
@@ -29,14 +30,18 @@ export default async function RootLayout({
       <body
         className={font.className}
       >
-            <AuthModal/>
-            <RentModal/>
-            <SearchModal/>            
-            <Navbar
-            //@ts-expect-error code working
+              <AuthModal/>
+              <RentModal/>
+              <Suspense>
+                <SearchModal/>    
+              </Suspense>
+              <Suspense>
+                  <Navbar
+                  //@ts-expect-error code working
+                  currentUser={currentUser}/>
+              </Suspense>
+              {children}
 
-             currentUser={currentUser}/>
-            {children}
       </body>
     </html>
   );

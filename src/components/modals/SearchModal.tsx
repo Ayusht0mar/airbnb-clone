@@ -1,6 +1,6 @@
 "use client"
 import qs, { StringifiableRecord } from "query-string"
-import { useCallback, useMemo, useState } from "react"
+import { Suspense, useCallback, useMemo, useState } from "react"
 import Modal from "./Modal"
 import useSearchModal from "@/app/hooks/useSearchModal"
 import { useRouter, useSearchParams } from "next/navigation"
@@ -174,16 +174,18 @@ const SearchModal = ({}) => {
     )
   }
   return (
-    <Modal
-      isOpen={searchModal.isOpen}
-      onClose={searchModal.onClose}
-      onSubmit={onSubmit}
-      title="Filters"
-      actionLabel={actionLabel}
-      secondaryActionLabel={secondaryActionLabel}
-      secondaryAction={step === STEPS.LOCATION ? undefined : onBack}
-      body={bodyContent}
-    />
+    <Suspense>
+        <Modal
+          isOpen={searchModal.isOpen}
+          onClose={searchModal.onClose}
+          onSubmit={onSubmit}
+          title="Filters"
+          actionLabel={actionLabel}
+          secondaryActionLabel={secondaryActionLabel}
+          secondaryAction={step === STEPS.LOCATION ? undefined : onBack}
+          body={bodyContent}
+        />
+    </Suspense>
   )
 }
 
